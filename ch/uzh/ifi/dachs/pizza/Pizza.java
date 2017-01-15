@@ -83,8 +83,15 @@ public class Pizza {
 
 	public int getColumns() {
 		return columns;
-	}	
-	
+	}
+	public int getIngredients() {
+		return ingredients;
+	}
+
+	public int getMax_cells() {
+		return max_cells;
+	}
+
 	private boolean parseCellValue(char cell) {
 		return cell == 'T';
 	}
