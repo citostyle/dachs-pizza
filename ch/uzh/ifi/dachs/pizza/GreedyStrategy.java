@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GreedySolution implements Solution {
+public class GreedyStrategy implements PizzaStrategy {
 	
 	private int taken[][]; 
 	

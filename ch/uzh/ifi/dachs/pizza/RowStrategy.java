@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Patrick on 15.01.17.
  */
-public class rowSolution implements Solution {
+public class RowStrategy implements PizzaStrategy {
 
 	@Override
 	public List<Slice> computeSlices(Pizza pizza) {
@@ -41,7 +41,7 @@ public class rowSolution implements Solution {
 				}
 			}
 		}
-		System.out.print("Score: %d",score);
+		System.out.print(String.format("Score: %d", score));
 		//System.out.print(pizza.sliceIsValid(new Slice(new Point(1,0), new Point(1,4))));
 		return slices;
 	}

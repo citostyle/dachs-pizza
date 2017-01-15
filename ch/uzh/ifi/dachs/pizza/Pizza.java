@@ -51,14 +51,14 @@ public class Pizza {
 		System.out.println(pizza.asciiMatrix());
 		
 		
-		List<Slice> greedy_slices = pizza.getSolution(new GreedySolution());
+		List<Slice> greedy_slices = pizza.getSolution(new GreedyStrategy());
 		for(Slice slice : greedy_slices) {
 			System.out.println(slice);
 		}
 
 
 		System.out.println();
-		List<Slice> row_slices = pizza.getSolution(new rowSolution());
+		List<Slice> row_slices = pizza.getSolution(new RowStrategy());
 		for(Slice slice : row_slices) {
 			System.out.println(slice);
 		}
@@ -126,7 +126,7 @@ public class Pizza {
 		return this.pizza;
 	}
 	
-	public List<Slice> getSolution(Solution solution) {
+	public List<Slice> getSolution(PizzaStrategy solution) {
 		return solution.computeSlices(this);
 	}
 	
