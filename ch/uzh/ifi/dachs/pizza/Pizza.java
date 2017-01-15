@@ -55,13 +55,13 @@ public class Pizza {
 		for(Slice slice : greedy_slices) {
 			System.out.println(slice);
 		}
+
+
 		System.out.println();
 		List<Slice> row_slices = pizza.getSolution(new rowSolution());
 		for(Slice slice : row_slices) {
 			System.out.println(slice);
 		}
-
-
 	}
 	
 	private int rows;
@@ -152,5 +152,10 @@ public class Pizza {
 			}
 		}
 		return numberM >= this.ingredients && numberT >= this.ingredients && numberM + numberT <= this.max_cells;
+	}
+	
+	public int getUniqueIngredientCount() {
+		// not ideal, but at least there's an abstraction in place now
+		return 2;
 	}
 }
