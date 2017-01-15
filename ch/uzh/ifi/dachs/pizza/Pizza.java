@@ -55,9 +55,9 @@ public class Pizza {
 		for(Slice slice : greedy_slices) {
 			System.out.println(slice);
 		}
-
+		System.out.println();
 		List<Slice> row_slices = pizza.getSolution(new rowSolution());
-		for(Slice slice : greedy_slices) {
+		for(Slice slice : row_slices) {
 			System.out.println(slice);
 		}
 
