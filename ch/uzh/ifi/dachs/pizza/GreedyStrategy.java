@@ -13,7 +13,7 @@ public class GreedyStrategy implements PizzaStrategy {
 	private List<Slice> slices = new ArrayList<Slice>();
 	
 	@Override
-	public List<Slice> computeSlices(Pizza pizza) {
+	public PizzaSolution computeSlices(Pizza pizza) {
 		
 		//initialize taken array
 		taken = new int[pizza.getRows()][pizza.getColumns()];
@@ -32,7 +32,7 @@ public class GreedyStrategy implements PizzaStrategy {
 			}
 			currentPosition = this.getNextPosition(currentPosition);
 		}
-		return slices; 
+		return new PizzaSolution(slices); 
 	}
 	
 	private Point getNextPosition(Point cell) {

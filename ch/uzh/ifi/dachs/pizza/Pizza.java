@@ -48,20 +48,18 @@ public class Pizza {
 		
 		scanner.close();
 		
-		System.out.println(pizza.asciiMatrix());
+		System.out.println(pizza);
 		
 		
-		List<Slice> greedy_slices = pizza.getSolution(new GreedyStrategy());
-		for(Slice slice : greedy_slices) {
-			System.out.println(slice);
-		}
+		PizzaSolution greedy_solution = pizza.getSolution(new GreedyStrategy());
+		System.out.println("Total score: " + greedy_solution.getTotalScore());
+		//System.out.println(greedy_solution);
 
 
 		System.out.println();
-		List<Slice> row_slices = pizza.getSolution(new RowStrategy());
-		for(Slice slice : row_slices) {
-			System.out.println(slice);
-		}
+		PizzaSolution row_solution = pizza.getSolution(new RowStrategy());
+		System.out.println("Total score: " + row_solution.getTotalScore());
+		//System.out.println(row_solution);
 	}
 	
 	private int rows;
@@ -111,7 +109,7 @@ public class Pizza {
 		this.pizza[row][column] = this.parseCellValue(cell);
 	}
 	
-	public String asciiMatrix() {
+	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		for(int i = 0; i < this.rows; i++) {
 			for(int j = 0; j < this.columns; j++) {
@@ -126,7 +124,7 @@ public class Pizza {
 		return this.pizza;
 	}
 	
-	public List<Slice> getSolution(PizzaStrategy solution) {
+	public PizzaSolution getSolution(PizzaStrategy solution) {
 		return solution.computeSlices(this);
 	}
 	

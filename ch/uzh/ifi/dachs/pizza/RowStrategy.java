@@ -10,7 +10,7 @@ import java.util.List;
 public class RowStrategy implements PizzaStrategy {
 
 	@Override
-	public List<Slice> computeSlices(Pizza pizza) {
+	public PizzaSolution computeSlices(Pizza pizza) {
 
 
 		//boolean[][] arr = pizza.getPizza();
@@ -60,8 +60,8 @@ public class RowStrategy implements PizzaStrategy {
 				}
 			}
 		}
-		System.out.print(String.format("Score: %d", score));
+		//System.out.print(String.format("Score: %d", score));
 		//System.out.print(pizza.sliceIsValid(new Slice(new Point(1,0), new Point(1,4))));
-		return slices;
+		return new PizzaSolution(slices);
 	}
 }
