@@ -24,4 +24,7 @@ public class PizzaSolution {
 		}
 		return sb.toString();
 	}
+	public List<Slice> getSlices(){
+		return slices;
+	}
 }

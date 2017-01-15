@@ -53,10 +53,14 @@ public class Pizza {
 		PizzaSolution greedy_solution = pizza.getSolution(new GreedyStrategy());
 		System.out.println("Total score: " + greedy_solution.getTotalScore());
 		System.out.println(greedy_solution);
+		
+		System.out.println("Is Valid: " + pizza.solutionIsValid(greedy_solution));
+		//System.out.println(greedy_solution);
 
 		PizzaSolution row_solution = pizza.getSolution(new RowStrategy());
 		System.out.println("Total score: " + row_solution.getTotalScore());
-		System.out.println(row_solution);
+		
+		System.out.println("Is Valid: " + pizza.solutionIsValid(row_solution));
 	}
 	
 	private int rows;
@@ -124,7 +128,21 @@ public class Pizza {
 	public PizzaSolution getSolution(PizzaStrategy solution) {
 		return solution.computeSlices(this);
 	}
-	
+
+	public boolean solutionIsValid(PizzaSolution solution) {
+		boolean[][] covered = new boolean[this.getRows()][this.getColumns()];
+		for(Slice slice : solution.getSlices()) {
+			for (int i = slice.getFirst().x; i <= slice.getSecond().x; i++) {
+				for (int j = slice.getFirst().y; j <= slice.getSecond().y; j++) {
+					if (covered[i][j]) return false;
+					covered[i][j] = true;
+				}
+			}
+		}
+		return true;
+	}
+
+
 	public boolean sliceIsValid(Slice slice) {
 		int numberM = 0;
 		int numberT = 0;
