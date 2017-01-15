@@ -50,16 +50,13 @@ public class Pizza {
 		
 		System.out.println(pizza);
 		
-		
 		PizzaSolution greedy_solution = pizza.getSolution(new GreedyStrategy());
 		System.out.println("Total score: " + greedy_solution.getTotalScore());
-		//System.out.println(greedy_solution);
+		System.out.println(greedy_solution);
 
-
-		System.out.println();
 		PizzaSolution row_solution = pizza.getSolution(new RowStrategy());
 		System.out.println("Total score: " + row_solution.getTotalScore());
-		//System.out.println(row_solution);
+		System.out.println(row_solution);
 	}
 	
 	private int rows;
