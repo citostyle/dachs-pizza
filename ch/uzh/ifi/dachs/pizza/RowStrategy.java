@@ -37,6 +37,25 @@ public class RowStrategy implements PizzaStrategy {
 					leftColumn = rightColumn+1;
 				}
 				else{
+					/*
+					take slice we added last
+					if it is in the same row
+					if making it shorter is still valid try if new slice beginning earlier exists
+					 */
+
+					Slice sliceToBeShortened = slices.get(slices.size()-1);
+					int sliceLength = sliceToBeShortened.getSecond().y-sliceToBeShortened.getFirst().y;
+
+					for(int k = sliceLength; k>=pizza.getIngredients()*2; k--){
+						slice = new Slice(new Point(row, leftColumn), new Point(row, rightColumn));
+
+						if(){}
+						else{}
+					}
+
+
+
+
 					leftColumn++;
 				}
 			}
