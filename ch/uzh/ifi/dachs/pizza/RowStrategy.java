@@ -25,37 +25,55 @@ public class RowStrategy implements PizzaStrategy {
 		int score = 0;
 		for(int row = 0; row < pizza.getRows(); row++) {
 			int leftColumn = 0;
-			while(leftColumn < pizza.getColumns()){
-				int rightColumn = leftColumn + pizza.getMax_cells()-1;
-				if (rightColumn > pizza.getColumns()-1) {
-					rightColumn = pizza.getColumns()-1;
+			while (leftColumn < pizza.getColumns()) {
+				int rightColumn = leftColumn + pizza.getMax_cells() - 1;
+				if (rightColumn > pizza.getColumns() - 1) {
+					rightColumn = pizza.getColumns() - 1;
 				}
 				slice = new Slice(new Point(row, leftColumn), new Point(row, rightColumn));
 				score += slice.getNumCells();
-				if(pizza.sliceIsValid(slice)){
+				if (pizza.sliceIsValid(slice)) {
 					slices.add(slice);
-					leftColumn = rightColumn+1;
-				}
-				else{
-					/*
-					take slice we added last
-					if it is in the same row
-					if making it shorter is still valid try if new slice beginning earlier exists
-					 */
+					leftColumn = rightColumn + 1;
+				} else {
+					if (slices.size() > 0) {
+						Slice sliceToBeShortened = slices.get(slices.size() - 1);
+						if (sliceToBeShortened.getFirst().x == row) {
 
-					Slice sliceToBeShortened = slices.get(slices.size()-1);
-					int sliceLength = sliceToBeShortened.getSecond().y-sliceToBeShortened.getFirst().y;
 
-					for(int k = sliceLength; k>=pizza.getIngredients()*2; k--){
-						slice = new Slice(new Point(row, leftColumn), new Point(row, rightColumn));
 
-						if(){}
-						else{}
+
+
+							int sliceLength = sliceToBeShortened.getSecond().y - sliceToBeShortened.getFirst().y;
+
+							for(int k = 1; k<=sliceLength-pizza.getIngredients()*2; k++) {
+
+								Slice sliceShortend = new Slice(
+										new Point(row, sliceToBeShortened.getFirst().y),
+										new Point(row, sliceToBeShortened.getSecond().y - k)
+								);
+								Slice sliceNew = new Slice(
+										new Point(row, sliceToBeShortened.getSecond().y-k+1),
+										new Point(row, Math.min(
+												sliceToBeShortened.getSecond().y + pizza.getMax_cells() - k,
+												pizza.getColumns() - 1)
+										)
+								);
+								if (pizza.sliceIsValid(sliceShortend) && pizza.sliceIsValid(sliceNew)) {
+									slices.remove(slices.size() - 1);
+									slices.add(sliceShortend);
+									slices.add(sliceNew);
+									leftColumn = sliceNew.getSecond().y;
+								}
+							}
+
+
+
+
+
+
+						}
 					}
-
-
-
-
 					leftColumn++;
 				}
 			}
