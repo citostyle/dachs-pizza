@@ -1,3 +1,4 @@
+//Foobar
 package ch.uzh.ifi.dachs.pizza;
 
 public class Pizza {
