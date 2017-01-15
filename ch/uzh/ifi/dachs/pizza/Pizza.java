@@ -3,6 +3,7 @@ package ch.uzh.ifi.dachs.pizza;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Pizza {
@@ -30,7 +31,7 @@ public class Pizza {
 		int ingredients = scanner.nextInt();
 		int max_cells = scanner.nextInt();
 		
-		Pizza solution = new Pizza(rows, columns, ingredients, max_cells);
+		Pizza pizza = new Pizza(rows, columns, ingredients, max_cells);
 		
 		String line;
 		int i = 0;
@@ -40,14 +41,20 @@ public class Pizza {
 				continue;
 			}
 			for(int j = 0; j < columns; j++) {
-				solution.setCell(i, j, line.charAt(j));
+				pizza.setCell(i, j, line.charAt(j));
 			}
 			i++;
 		}
 		
 		scanner.close();
 		
-		System.out.println(solution.asciiMatrix());
+		System.out.println(pizza.asciiMatrix());
+		
+		
+		List<Slice> greedy_slices = pizza.getSolution(new GreedySolution());
+		for(Slice slice : greedy_slices) {
+			System.out.println(slice);
+		}
 	}
 	
 	private int rows;
@@ -90,5 +97,28 @@ public class Pizza {
 			sb.append("\n");
 		}
 		return sb.toString();
+	}
+	
+	public boolean[][] getPizza() {
+		return this.pizza;
+	}
+	
+	public List<Slice> getSolution(Solution solution) {
+		return solution.computeSlices(this);
+	}
+	
+	public boolean sliceIsValid(Slice slice) {
+		int numberM = 0;
+		int numberT = 0;
+		for(int i = slice.getFirst().x; i <= slice.getSecond().x; i++)  {
+			for(int j = slice.getFirst().y; j <= slice.getSecond().y; j++) {
+				if(this.pizza[i][j] == Pizza.T) {
+					numberT++;
+				} else {
+					numberM++;
+				}
+			}
+		}
+		return numberM >= this.ingredients && numberT >= this.ingredients && numberM + numberT <= this.max_cells;
 	}
 }
