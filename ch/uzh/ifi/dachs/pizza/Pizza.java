@@ -59,6 +59,7 @@ public class Pizza {
 	
 	private int rows;
 	private int columns;
+
 	private int ingredients;
 	private int max_cells;
 	
@@ -75,6 +76,14 @@ public class Pizza {
 		
 		this.pizza = new boolean[rows][columns];
 	}
+	
+	public int getRows() {
+		return rows;
+	}
+
+	public int getColumns() {
+		return columns;
+	}	
 	
 	private boolean parseCellValue(char cell) {
 		return cell == 'T';
