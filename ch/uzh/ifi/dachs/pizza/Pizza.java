@@ -55,6 +55,13 @@ public class Pizza {
 		for(Slice slice : greedy_slices) {
 			System.out.println(slice);
 		}
+
+		List<Slice> row_slices = pizza.getSolution(new rowSolution());
+		for(Slice slice : greedy_slices) {
+			System.out.println(slice);
+		}
+
+
 	}
 	
 	private int rows;
@@ -126,6 +133,15 @@ public class Pizza {
 	public boolean sliceIsValid(Slice slice) {
 		int numberM = 0;
 		int numberT = 0;
+
+		if (slice.getSecond().x < slice.getFirst().x || slice.getSecond().y < slice.getFirst().y){
+			return false;
+		}
+
+		if (slice.getSecond().x >= this.getRows() || slice.getSecond().y >= this.getColumns()){
+			return false;
+		}
+
 		for(int i = slice.getFirst().x; i <= slice.getSecond().x; i++)  {
 			for(int j = slice.getFirst().y; j <= slice.getSecond().y; j++) {
 				if(this.pizza[i][j] == Pizza.T) {
