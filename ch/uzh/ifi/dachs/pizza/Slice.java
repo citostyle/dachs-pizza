@@ -23,7 +23,7 @@ public class Slice {
 		return second;
 	}
 
-	public int getNumCells() { return numCells; }
+	public int getNumCells() { return numCells;	}
 
 	public String toString() {
 		return String.format("%d %d %d %d", first.x, first.y, second.x, second.y);

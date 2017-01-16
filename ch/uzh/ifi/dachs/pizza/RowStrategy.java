@@ -13,14 +13,49 @@ public class RowStrategy implements PizzaStrategy {
 	public PizzaSolution computeSlices(Pizza pizza) {
 
 
+		Pizza pizzaTransposed = new Pizza(
+				pizza.getColumns(),
+				pizza.getRows(),
+				pizza.getIngredients(),
+				pizza.getMax_cells());
+
+		for(int i = 0; i<pizza.getRows(); i++){
+			for(int j = 0; j<pizza.getColumns(); j++){
+				if((pizza.getPizza())[i][j]) {
+					pizzaTransposed.setCell(j, i, 'T');
+				}
+				else{
+					pizzaTransposed.setCell(j, i, 'M');
+				}
+			}
+		}
+
+		PizzaSolution slices = computeSlicesIntern(pizza);
+		PizzaSolution slicesTransposed = computeSlicesIntern(pizzaTransposed);
+
+		System.out.println(slices.getTotalScore()-slicesTransposed.getTotalScore());
+
+		if(slices.getTotalScore()>slicesTransposed.getTotalScore()){
+			return slices;
+		}
+
+		List<Slice> slicesNeu = new ArrayList<Slice>();
+		for(Slice slice : slicesTransposed.getSlices()){
+			slicesNeu.add(new Slice(
+					new Point(slice.getFirst().y, slice.getFirst().x),
+					new Point(slice.getSecond().y, slice.getSecond().x)
+			));
+		}
+		return new PizzaSolution(slicesNeu);
+
+	}
+
+
 		//boolean[][] arr = pizza.getPizza();
 
-		List<Slice> slices = new ArrayList<Slice>();
-		/*slices.add(new Slice(new Point(0, 0), new Point(2, 1)));
-		slices.add(new Slice(new Point(0, 2), new Point(2, 2)));
-		slices.add(new Slice(new Point(3, 4), new Point(3, 4)));
-		System.out.println(pizza.sliceIsValid(new Slice(new Point(1, 3), new Point(2, 5))));*/
 
+	public PizzaSolution computeSlicesIntern(Pizza pizza) {
+		List<Slice> slices = new ArrayList<Slice>();
 		Slice slice;
 		int score = 0;
 		for(int row = 0; row < pizza.getRows(); row++) {
@@ -38,11 +73,9 @@ public class RowStrategy implements PizzaStrategy {
 				} else {
 					if (slices.size() > 0) {
 						Slice sliceToBeShortened = slices.get(slices.size() - 1);
+						//System.out.println("sliceToBeShortened " + sliceToBeShortened);
+
 						if (sliceToBeShortened.getFirst().x == row) {
-
-
-
-
 
 							int sliceLength = sliceToBeShortened.getSecond().y - sliceToBeShortened.getFirst().y;
 
@@ -64,14 +97,9 @@ public class RowStrategy implements PizzaStrategy {
 									slices.add(sliceShortend);
 									slices.add(sliceNew);
 									leftColumn = sliceNew.getSecond().y;
+									break;
 								}
 							}
-
-
-
-
-
-
 						}
 					}
 					leftColumn++;
@@ -80,6 +108,10 @@ public class RowStrategy implements PizzaStrategy {
 		}
 		//System.out.print(String.format("Score: %d", score));
 		//System.out.print(pizza.sliceIsValid(new Slice(new Point(1,0), new Point(1,4))));
+
+		/*for(Slice sliceOut : slices){
+			System.out.println(sliceOut);
+		}*/
 		return new PizzaSolution(slices);
 	}
 }

@@ -131,12 +131,15 @@ public class Pizza {
 	}
 
 	public boolean solutionIsValid(PizzaSolution solution) {
-		boolean[][] covered = new boolean[this.getRows()][this.getColumns()];
+		Slice[][] covered = new Slice[this.getRows()][this.getColumns()];
 		for(Slice slice : solution.getSlices()) {
 			for (int i = slice.getFirst().x; i <= slice.getSecond().x; i++) {
 				for (int j = slice.getFirst().y; j <= slice.getSecond().y; j++) {
-					if (covered[i][j]) return false;
-					covered[i][j] = true;
+					if (covered[i][j] != null) {
+						System.err.println("The following pieces overlap\n" + covered[i][j] + "\n" + slice);
+						return false;
+					}
+					covered[i][j] = slice;
 				}
 			}
 		}
