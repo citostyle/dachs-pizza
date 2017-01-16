@@ -33,7 +33,7 @@ public class RowStrategy implements PizzaStrategy {
 		PizzaSolution slices = computeSlicesIntern(pizza);
 		PizzaSolution slicesTransposed = computeSlicesIntern(pizzaTransposed);
 
-		System.out.println(slices.getTotalScore()-slicesTransposed.getTotalScore());
+		//System.out.println(slices.getTotalScore()-slicesTransposed.getTotalScore());
 
 		if(slices.getTotalScore()>slicesTransposed.getTotalScore()){
 			return slices;
