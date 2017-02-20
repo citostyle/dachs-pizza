@@ -1,4 +1,4 @@
-package ch.uzh.ifi.dachs.pizza;
+ package ch.uzh.ifi.dachs.pizza;
 
 public class Row {
 
@@ -16,8 +16,15 @@ public class Row {
 	public void setUnavailable(int column) {
 		this.columns[column] = UNAVAILABLE;
 	}
+
+    public int getCapacity() {
+	int count = 0;
+	for(int i = 0; i < this.columns.length(); i++) {
+	    if(this.columns[i] != EMPTY && this.columns[i] != UNAVAILABLE){}
+	    
 	
 	public void setServer(Server server) {
 		
 	}
+
 }
