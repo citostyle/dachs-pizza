@@ -25,5 +25,7 @@ public class DatacenterMain {
 		
 		String filename = args[0];
 		Datacenter dc = Datacenter.createDatacenterFromFile(filename);
+		dc.RowAllocation(new UtilityScoreNextServerStrategy(dc), new GreedyNextRowStrategy(dc));
+		
 	}
 }

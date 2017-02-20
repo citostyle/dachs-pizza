@@ -16,4 +16,8 @@ public class Row {
 	public void setUnavailable(int column) {
 		this.columns[column] = UNAVAILABLE;
 	}
+	
+	public void setServer(Server server) {
+		
+	}
 }
