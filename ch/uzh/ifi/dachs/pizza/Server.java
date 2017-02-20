@@ -11,4 +11,12 @@ public class Server {
 		this.size = size;
 		this.capacity = capacity;
 	}
+
+	public int getRow(){
+		return this.row;
+	}
+
+	public int getCapacity(){
+		return this.capacity;
+	}
 }

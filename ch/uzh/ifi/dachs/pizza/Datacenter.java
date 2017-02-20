@@ -13,6 +13,9 @@ public class Datacenter {
 	
 	private List<Row> rows;
 	private List<Server> servers;
+
+	private List<Pool> pools;
+
 	
 	public Datacenter(int rows, int columns, int pool_number) {
 		this.number_rows = rows;
@@ -67,4 +70,18 @@ public class Datacenter {
 		scanner.close();
 		return dc;		
 	}
+
+
+	public void get_garanteed(){
+
+		int minimum = 0;
+		for(int row; row) {
+
+
+
+		}
+
+	}
+
+
 }
