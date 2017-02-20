@@ -104,12 +104,14 @@ public class Datacenter {
 	}
 
 
-	public void getWorstCaseCapacity(){
+	public int getWorstCaseCapacity(){
 		int min = Integer.MAX_VALUE;
 
 		for(Pool pool : this.pools){
 			min = Math.min(min, pool.getWorstCaseCapacity());
 		}
+
+		return min;
 
 
 		}
