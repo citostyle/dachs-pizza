@@ -23,5 +23,8 @@ public class Row {
 	    if(this.columns[i] != EMPTY && this.columns[i] != UNAVAILABLE){}
 	    
 	
-	
+	public void setServer(Server server) {
+		
+	}
+
 }

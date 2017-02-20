@@ -35,6 +35,32 @@ public class Datacenter {
 		this.servers.add(new Server(size, capacity));
 	}
 	
+	public int getPool_number() {
+		return pool_number;
+	}
+
+	public List<Row> getRows() {
+		return rows;
+	}
+
+	public List<Server> getServers() {
+		return servers;
+	}
+	
+	public void RowAllocation(UtilityScoreNextServerStrategy utilityScoreNextServerStrategy, GreedyNextRowStrategy greedyNextRowStrategy) {
+		Server server;
+		Row row;
+		while(!this.rowAllocationIsDone()) {
+			server = utilityScoreNextServerStrategy.getNextServer();
+			row = greedyNextRowStrategy.getNextRow(server);
+			
+		}
+	}
+	
+	private boolean rowAllocationIsDone() {
+		return false;
+	}
+	
 	public static Datacenter createDatacenterFromFile(String filename) throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File(filename));
 		
