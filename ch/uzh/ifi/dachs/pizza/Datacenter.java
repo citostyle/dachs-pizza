@@ -113,10 +113,6 @@ public class Datacenter {
 
 		return min;
 
-
-		}
-
 	}
-
 
 }
