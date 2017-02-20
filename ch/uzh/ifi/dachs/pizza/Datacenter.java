@@ -1,7 +1,10 @@
 package ch.uzh.ifi.dachs.pizza;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Datacenter {
 	private int number_rows;
@@ -30,5 +33,38 @@ public class Datacenter {
 
 	public void addServer(int size, int capacity) {
 		this.servers.add(new Server(size, capacity));
+	}
+	
+	public static Datacenter createDatacenterFromFile(String filename) throws FileNotFoundException {
+		Scanner scanner = new Scanner(new File(filename));
+		
+		int rows = scanner.nextInt();
+		int columns = scanner.nextInt();
+		int unavailable_slots = scanner.nextInt();
+		int pool_number = scanner.nextInt();
+		int server_number = scanner.nextInt();
+		
+		Datacenter dc = new Datacenter(rows, columns, pool_number);		
+		
+		int urow;
+		int ucolumn;
+		while(scanner.hasNextLine() && unavailable_slots > 0) {
+			urow = scanner.nextInt();
+			ucolumn = scanner.nextInt();
+			dc.setUnvailable(urow, ucolumn);
+			unavailable_slots--;
+		}
+		
+		int size;
+		int capacity;
+		while(scanner.hasNextLine() && server_number > 0) {
+			size = scanner.nextInt();
+			capacity = scanner.nextInt();
+			dc.addServer(size, capacity);
+			server_number--;
+		}
+		
+		scanner.close();
+		return dc;		
 	}
 }
