@@ -35,8 +35,12 @@ public class DatacenterMain {
 		
 		Datacenter dc = new Datacenter(rows, columns, unavailable_slots, pool_number);		
 		
+		int urow;
+		int ucolumn;
 		while(scanner.hasNextLine() && unavailable_slots > 0) {
-			
+			urow = scanner.nextInt();
+			ucolumn = scanner.nextInt();
+			dc.setUnvailable(urow, ucolumn);
 			unavailable_slots--;
 		}
 		

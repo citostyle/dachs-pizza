@@ -22,4 +22,8 @@ public class Datacenter {
 			this.rows.add(new Row(columns));
 		}
 	}
+	
+	public void setUnvailable(int row, int column) {
+		this.rows.get(row).setUnavailable(column);
+	}
 }
