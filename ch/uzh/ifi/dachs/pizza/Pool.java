@@ -25,7 +25,7 @@ public class Pool {
 		return false;
 	}
 
-	public int worst_case_capacity(){
+	public int getWorstCaseCapacity(){
 
 		LinkedList<Integer> has_servers_in_rows = new LinkedList<>();
 
@@ -33,7 +33,7 @@ public class Pool {
 			has_servers_in_rows.add(server.getRow());
 		}
 
-		int min = ~(1<<31);
+		int min = Integer.MAX_VALUE;
 		for(int row : has_servers_in_rows){
 			int min_cur = 0;
 			for(Server server: this.servers){

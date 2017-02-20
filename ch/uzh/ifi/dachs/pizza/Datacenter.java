@@ -14,14 +14,20 @@ public class Datacenter {
 	private List<Row> rows;
 	private List<Server> servers;
 
-	private List<Pool> pools;
+	private Pool[] pools;
 
 	
 	public Datacenter(int rows, int columns, int pool_number) {
 		this.number_rows = rows;
 		this.columns = columns;
 		this.pool_number = pool_number;
-		
+
+		this.pools = new Pool[pool_number];
+		for (int i = 0;i< pool_number;i++){
+			this.pools[i] = new Pool();
+		}
+
+
 		this.rows = new ArrayList<Row>();
 		for(int i = 0; i < number_rows; i++) {
 			this.rows.add(new Row(columns));
@@ -98,11 +104,12 @@ public class Datacenter {
 	}
 
 
-	public void get_garanteed(){
+	public void getWorstCaseCapacity(){
+		int min = Integer.MAX_VALUE;
 
-		int minimum = 0;
-		for(int row; row) {
-
+		for(Pool pool : this.pools){
+			min = Math.min(min, pool.getWorstCaseCapacity());
+		}
 
 
 		}
