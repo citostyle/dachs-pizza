@@ -26,14 +26,13 @@ public class DatacenterMain {
 		String filename = args[0];
 		Scanner scanner = new Scanner(new File(filename));
 		
-		
-		
 		int rows = scanner.nextInt();
 		int columns = scanner.nextInt();
 		int unavailable_slots = scanner.nextInt();
 		int pool_number = scanner.nextInt();
+		int server_number = scanner.nextInt();
 		
-		Datacenter dc = new Datacenter(rows, columns, unavailable_slots, pool_number);		
+		Datacenter dc = new Datacenter(rows, columns, pool_number);		
 		
 		int urow;
 		int ucolumn;
@@ -44,20 +43,16 @@ public class DatacenterMain {
 			unavailable_slots--;
 		}
 		
-		/*Pizza pizza = new Pizza(rows, columns, ingredients, max_cells);
+		int size;
+		int capacity;
+		while(scanner.hasNextLine() && server_number > 0) {
+			size = scanner.nextInt();
+			capacity = scanner.nextInt();
+			dc.addServer(size, capacity);
+			server_number--;
+		}
 		
-		String line;
-		int i = 0;
-		while(scanner.hasNextLine()) {
-			line = scanner.nextLine();
-			if(line.isEmpty()) {
-				continue;
-			}
-			for(int j = 0; j < columns; j++) {
-				pizza.setCell(i, j, line.charAt(j));
-			}
-			i++;
-		}*/
+		System.out.println("Test");
 		
 		scanner.close();
 	}
